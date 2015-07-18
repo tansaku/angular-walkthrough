@@ -7,7 +7,7 @@ describe('GitUserSearchController', function() {
   }));
 
   it('initialises with an empty search result and term', function() {
-    console.log(JSON.stringify(controller));
+    // console.log(JSON.stringify(controller));
     expect(controller.searchResult).toBeUndefined(); // TypeError: 'undefined' is not an object (evaluating 'controller.searchResult')
     expect(controller.searchTerm  ).toBeUndefined();
   });
@@ -26,9 +26,17 @@ describe('GitUserSearchController', function() {
       }
     ];
 
+    var httpBackend;
+    beforeEach(inject(function($httpBackend){
+      httpBackend = $httpBackend;
+      httpBackend.when('GET','https://api.github.com/search/users?q=hello')
+                 .respond({items:items});
+    }));
+
     it('displays search results', function(){
       controller.searchTerm = 'hello';
       controller.doSearch();
+      httpBackend.flush();
       expect(controller.searchResult.items).toEqual(items);
     });
   });
