@@ -27,7 +27,7 @@ describe('GitUserSearchController', function() {
     ];
 
     it('displays search results', function(){
-      expect(controller.searchResults.items).toEqual(items);
+      expect(controller.searchResult.items).toEqual(items);
     });
   });
 });

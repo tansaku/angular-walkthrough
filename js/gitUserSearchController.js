@@ -2,7 +2,7 @@ githubUserSearch.controller('GitUserSearchController', [function() {
 
   var self = this;
 
-  self.searchResults = {
+  self.searchResult = {
   	 "items": [
 	    {
 	      "login": "tansaku",
